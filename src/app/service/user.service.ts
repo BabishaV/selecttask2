@@ -23,7 +23,7 @@ export class UserService {
     }
     
     updateUser( id:any,userData: any) {
-      // const url = 'https://gorest.co.in/public/v2/users/?access-token=9def0d50c71e0d10ccdeea8496d2e14c77b34f6302fa03abef7f1de870b982fd';
+      
       const url ='https://gorest.co.in/public/v2/users/'+id+'?access-token=9def0d50c71e0d10ccdeea8496d2e14c77b34f6302fa03abef7f1de870b982fd';
       // Patch request
       return this.http.patch(url, userData);
