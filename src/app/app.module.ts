@@ -8,13 +8,13 @@ import { NewuserComponent } from './newuser/newuser.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-
+// import {  } from '@angular/forms';
 
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule,Route,Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
 const routes: Routes = [
   {path:'',component:UserlistComponent},
    {path:'adduser',component:NewuserComponent},
@@ -26,7 +26,8 @@ const routes: Routes = [
     UserlistComponent,
     NewuserComponent,
     LoginComponent,
-    UpdateuserComponent
+    
+    
   ],
   imports: [
     BrowserModule,
