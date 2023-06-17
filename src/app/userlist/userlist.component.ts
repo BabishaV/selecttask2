@@ -26,8 +26,10 @@ export class UserlistComponent {
   totalItems: number = 10;
   showTable: boolean = false;
   isFormOpen: boolean = false;
+  isviewFormOpen:boolean=false;
   updateuser: FormGroup;
- row:any[]=[];
+ 
+userData: any;
   constructor(private dialog: MatDialog, private userService: UserService) {
     this.updateuser = new FormGroup({
       id: new FormControl(''),
@@ -95,7 +97,10 @@ export class UserlistComponent {
       }
     );
   }
-  
+  viewData(user:any){
+    this.userData=user;
+    this.isviewFormOpen=true;
+  }
   
 
 
@@ -115,7 +120,16 @@ export class UserlistComponent {
 
   goBack(): void {
     this.isFormOpen = false;
-    this.updateuser.reset(); // Reset the form values
+    this.updateuser.reset(); 
+    // Reset the form values
+  }
+  reset(): void {
+    this.isviewFormOpen = false;
+    // Reset form values
+    const formElement = document.getElementById('userData.id');
+    if (formElement) {
+      (formElement as HTMLFormElement).reset();
+    }
   }
 
   saveChanges(): void {
