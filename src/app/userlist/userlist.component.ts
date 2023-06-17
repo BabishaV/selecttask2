@@ -39,7 +39,7 @@ userData: any;
       status: new FormControl('', [Validators.required])
     });
   }
-
+// Add user Form
   addUserForm() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'custom-dialog-container';
@@ -53,7 +53,7 @@ userData: any;
     const dialogRef = this.dialog.open(NewuserComponent, dialogConfig);
   }
   
-
+// Display the user data 
 
   displayUserList() {
     const userData = {};
@@ -84,7 +84,7 @@ userData: any;
   getTotalPages() {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
-
+// delete the user data in the user list
   deleteUser(id: any) {
     this.userService.deleteUser(id).subscribe(
       (response: any) => {
@@ -97,13 +97,21 @@ userData: any;
       }
     );
   }
+  // View the user data from the user list
   viewData(user:any){
     this.userData=user;
     this.isviewFormOpen=true;
   }
-  
+  reset(): void {
+    this.isviewFormOpen = false;
+    // Reset form values
+    const formElement = document.getElementById('userData.id');
+    if (formElement) {
+      (formElement as HTMLFormElement).reset();
+    }
+  }
 
-
+// Update the user data in the user list
   editUser(user: any): void {
     this.selectedUser = { ...user }; // Create a copy of the selected user object
     this.isFormOpen = true;
@@ -123,21 +131,14 @@ userData: any;
     this.updateuser.reset(); 
     // Reset the form values
   }
-  reset(): void {
-    this.isviewFormOpen = false;
-    // Reset form values
-    const formElement = document.getElementById('userData.id');
-    if (formElement) {
-      (formElement as HTMLFormElement).reset();
-    }
-  }
+  
 
   saveChanges(): void {
     const updatedUser = { ...this.updateuser.value }; // Create a copy of the updated form values
     const userId = updatedUser.id; // Store the user id
     delete updatedUser.id;
 
-  //   // Update the user data in the user list
+   // Update the user data in the user list
     this.users = this.users.map((user: any) => {
       if (user.id === userId) {
         return { id: userId, ...updatedUser }; // Update the user with the form values
