@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewuserComponent } from '../newuser/newuser.component';
@@ -101,8 +93,9 @@ userData: any;
   viewData(user:any){
     this.userData=user;
     this.isviewFormOpen=true;
+    this.isFormOpen = false;
   }
-  reset(): void {
+  reset():void{
     this.isviewFormOpen = false;
     // Reset form values
     const formElement = document.getElementById('userData.id');
@@ -110,13 +103,12 @@ userData: any;
       (formElement as HTMLFormElement).reset();
     }
   }
-
 // Update the user data in the user list
   editUser(user: any): void {
     this.selectedUser = { ...user }; // Create a copy of the selected user object
     this.isFormOpen = true;
-
-  //   // Set the form values based on the selected user
+    this.isviewFormOpen=false;
+    // Set the form values based on the selected user
     this.updateuser.patchValue({
       id: this.selectedUser.id,
       name: this.selectedUser.name,
@@ -125,6 +117,7 @@ userData: any;
       status: this.selectedUser.status
     });
   }
+
 
   goBack(): void {
     this.isFormOpen = false;
